@@ -6,3 +6,5 @@ A brief discussion of performance optimization and when to do it, of how to benc
 
 Slides available on SlideShare:
 [https://www.slideshare.net/DavidWengier/performance-and-benchmarking-79247400](https://www.slideshare.net/DavidWengier/performance-and-benchmarking-79247400)
+
+Video recording of the talk: [https://www.youtube.com/watch?v=S8zhGaT6vv8](https://www.youtube.com/watch?v=S8zhGaT6vv8)
