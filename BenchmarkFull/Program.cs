@@ -9,11 +9,11 @@ namespace BenchmarkFull
 		public static void Main(string[] args)
 		{
             BenchmarkRunner.Run<SubstringVsSpan>();
-            //BenchmarkRunner.Run<GetCurrentMethod>();
-            //BenchmarkRunner.Run<StringsToCsv>();
-            //BenchmarkRunner.Run<Exceptions>();
-            //BenchmarkRunner.Run<LoopVsLinq>();
-            //BenchmarkRunner.Run<DictionaryVsIDictionary>();
+            BenchmarkRunner.Run<GetCurrentMethod>();
+            BenchmarkRunner.Run<StringsToCsv>();
+            BenchmarkRunner.Run<Exceptions>();
+            BenchmarkRunner.Run<LoopVsLinq>();
+            BenchmarkRunner.Run<DictionaryVsIDictionary>();
         }
 	}
 }
