@@ -4,7 +4,7 @@ using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Exporters;
 
-namespace Benchmark
+namespace BenchmarkFull
 {
 	[MemoryDiagnoser]
 	[RPlotExporter]

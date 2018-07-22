@@ -4,7 +4,7 @@ using System.Text;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Exporters;
 
-namespace Benchmark
+namespace BenchmarkFull
 {
 	[MemoryDiagnoser]
 	[RPlotExporter]
@@ -50,7 +50,7 @@ namespace Benchmark
 		[Benchmark]
 		public string StringBuilder_WithCapacity()
 		{
-			StringBuilder sb = new StringBuilder(data.Length * 2);
+			StringBuilder sb = new StringBuilder(data.Length * 3);
 			foreach (byte datum in data)
 			{
 				sb.Append(datum);
