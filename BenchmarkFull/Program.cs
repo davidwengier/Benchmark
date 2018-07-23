@@ -4,16 +4,11 @@ using BenchmarkDotNet.Running;
 
 namespace BenchmarkFull
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-            BenchmarkRunner.Run<SubstringVsSpan>();
-            BenchmarkRunner.Run<GetCurrentMethod>();
-            BenchmarkRunner.Run<StringsToCsv>();
-            BenchmarkRunner.Run<Exceptions>();
-            BenchmarkRunner.Run<LoopVsLinq>();
-            BenchmarkRunner.Run<DictionaryVsIDictionary>();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run();
         }
-	}
+    }
 }
