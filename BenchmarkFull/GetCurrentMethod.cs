@@ -1,6 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
+using BenchmarkDotNet.Attributes;
 
 namespace BenchmarkFull
 {

@@ -1,5 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
+﻿using System;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes.Exporters;
 
 namespace BenchmarkCore
 {

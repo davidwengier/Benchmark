@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using System;
-using BenchmarkDotNet.Attributes;
-
-using System;
+﻿using System;
 using System.Linq;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes.Exporters;
 
 namespace BenchmarkFull
 {
