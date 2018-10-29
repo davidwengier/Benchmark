@@ -7,7 +7,7 @@ namespace BenchmarkCore
     {
         private static void Main(string[] args)
         {
-            BenchmarkRunner.Run<SubstringVsSpan>();
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run();
         }
     }
 }
