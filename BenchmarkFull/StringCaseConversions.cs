@@ -7,7 +7,7 @@ namespace BenchmarkFull
     [RPlotExporter]
     public class StringCaseConversions
     {
-        private string _input = "iTs an OlDer memE bUt IT cHEcKS Out!";
+        private readonly string _input = "iTs an OlDer memE bUt IT cHEcKS Out!";
 
         [Benchmark]
         public string ToLower()

@@ -8,7 +8,7 @@ namespace BenchmarkFull
     [RPlotExporter]
     public class Exceptions
     {
-        private Random _random = new Random();
+        private readonly Random _random = new Random();
         private string _data;
 
         [GlobalSetup]
@@ -34,8 +34,7 @@ namespace BenchmarkFull
         [Benchmark]
         public int TryParse()
         {
-            int result;
-            if (int.TryParse(_data, out result))
+            if (int.TryParse(_data, out int result))
             {
                 return result;
             }

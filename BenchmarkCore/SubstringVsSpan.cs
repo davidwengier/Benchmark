@@ -8,15 +8,15 @@ namespace BenchmarkCore
     [MemoryDiagnoser]
     public class SubstringVsSpan
     {
-        private string plate = "12345678901243";
+        private readonly string _plate = "123456789012436784";
 
-        [Params(1, 5, 10)]
+        [Params(5, 10, 15)]
         public int Number { get; set; }
 
         [Benchmark]
         public long Span()
         {
-            var span = plate.AsSpan();
+            var span = _plate.AsSpan();
             for (int i = 0; i < Number; i++)
             {
                 span = span.Slice(1);
@@ -27,7 +27,7 @@ namespace BenchmarkCore
         [Benchmark]
         public long Substring()
         {
-            var tmp = plate;
+            var tmp = _plate;
             for (int i = 0; i < Number; i++)
             {
                 tmp = tmp.Substring(1);

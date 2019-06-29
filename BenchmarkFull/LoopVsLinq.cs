@@ -9,7 +9,7 @@ namespace BenchmarkFull
     [RPlotExporter]
     public class LoopVsLinq
     {
-        private string[] parameters = new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
+        private readonly string[] parameters = new[] { "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten" };
 
         [Benchmark]
         public string Iterative()

@@ -6,4 +6,6 @@ Video recording from NDC Sydney: [https://www.youtube.com/watch?v=rBwsrLFBg5Y](h
 
 Slides from NDC London: [https://www.slideshare.net/DavidWengier/pragmatic-performance-from-ndc-london-2019](https://www.slideshare.net/DavidWengier/pragmatic-performance-from-ndc-london-2019)
 
-Note: This is a general dumping ground for a bunch of my benchmarks, not a 1:1 of the benchmarks presented in the slides or video.
+The talk has also been presented at various user groups and at NDC Oslo 2019.
+
+Note: This is a general dumping ground for a bunch of my benchmarks (or a bench of my bunchmarks), not just the source code for the benchmarks presented in the slides or video.
