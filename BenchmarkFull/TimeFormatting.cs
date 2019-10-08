@@ -35,9 +35,46 @@ namespace BenchmarkFull
 #pragma warning restore IDE0044 // Add readonly modifier
 
         [Benchmark]
-        public string Lyrcaxis_OriginalCode()
+        public string StringInterpolation()
         {
             return $"({(int)Day + (Week * 7)}) {Day}  {Hour:00}:{Minute:00}:{Second:00}";
+        }
+
+        [Benchmark]
+        public string StringBuilder_AppendFormat()
+        {
+            builder.Clear();
+            builder.Append("(");
+            builder.Append((int)Day + (Week * 7));
+            builder.Append(") ");
+            builder.Append(Day);
+            builder.Append("  ");
+            builder.AppendFormat("{0:00}", Hour);
+            builder.Append(":");
+            builder.AppendFormat("{0:00}", Minute);
+            builder.Append(":");
+            builder.AppendFormat("{0:00}", Second);
+
+            return builder.ToString();
+        }
+
+        [Benchmark]
+        public string StringBuilder_NotCached()
+        {
+            var localBuilder = new StringBuilder();
+            localBuilder.Clear();
+            localBuilder.Append("(");
+            localBuilder.Append((int)Day + (Week * 7));
+            localBuilder.Append(") ");
+            localBuilder.Append(Day);
+            localBuilder.Append("  ");
+            localBuilder.Append(Hour.ToString().PadLeft(2, '0'));
+            localBuilder.Append(":");
+            localBuilder.Append(Minute.ToString().PadLeft(2, '0'));
+            localBuilder.Append(":");
+            localBuilder.Append(Second.ToString().PadLeft(2, '0'));
+
+            return localBuilder.ToString();
         }
 
         [Benchmark]
