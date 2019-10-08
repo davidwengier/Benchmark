@@ -1,9 +1,6 @@
-﻿using BenchmarkDotNet.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Text;
-using System.Threading.Tasks;
+using BenchmarkDotNet.Attributes;
 
 namespace BenchmarkFull
 {
@@ -13,13 +10,29 @@ namespace BenchmarkFull
     [MemoryDiagnoser]
     public class TimeFormatting
     {
-        public DayOfWeek Day = DateTime.Now.DayOfWeek;
-        public int Week = 5; // actually week number
-        public int Hour = DateTime.Now.Hour;
-        public int Minute = DateTime.Now.Minute;
-        public int Second = DateTime.Now.Second;
+        // credit to @sc_holden for thinking of doing this
+        private readonly string[] PrebuiltDaysString = new string[] {
+            ") " + DayOfWeek.Sunday+ "  ",
+            ") " + DayOfWeek.Monday + "  ",
+            ") " + DayOfWeek.Tuesday + "  ",
+            ") " + DayOfWeek.Wednesday+ "  ",
+            ") " + DayOfWeek.Thursday+ "  ",
+            ") " + DayOfWeek.Friday+ "  ",
+            ") " + DayOfWeek.Saturday+ "  "
+        };
 
-        public StringBuilder builder = new StringBuilder();
+        // Disabling readonly in case it affects outputted code
+#pragma warning disable IDE0044 // Add readonly modifier
+
+        private DayOfWeek Day = DateTime.Now.DayOfWeek;
+        private int Week = 12; // actually week number
+        private int Hour = DateTime.Now.Hour;
+        private int Minute = DateTime.Now.Minute;
+        private int Second = DateTime.Now.Second;
+
+        private StringBuilder builder = new StringBuilder();
+
+#pragma warning restore IDE0044 // Add readonly modifier
 
         [Benchmark]
         public string Lyrcaxis_OriginalCode()
@@ -28,7 +41,7 @@ namespace BenchmarkFull
         }
 
         [Benchmark]
-        public string Lyrcaxis_NewCode()
+        public string StringBuilder()
         {
             builder.Clear();
             builder.Append("(");
@@ -76,6 +89,37 @@ namespace BenchmarkFull
         }
 
         [Benchmark]
+        public string StringBuilder_NoPadLeft()
+        {
+            builder.Clear();
+            builder.Append("(");
+            builder.Append((int)Day + (Week * 7));
+            builder.Append(") ");
+            builder.Append(Day);
+            builder.Append("  ");
+            if (Hour < 10)
+            {
+                builder.Append("0");
+            }
+            builder.Append(Hour);
+            builder.Append(":");
+            if (Minute < 10)
+            {
+                builder.Append("0");
+            }
+            builder.Append(Minute);
+            builder.Append(":");
+            if (Second < 10)
+            {
+                builder.Append("0");
+            }
+            builder.Append(Second);
+
+            return builder.ToString();
+        }
+
+
+        [Benchmark]
         public string Math()
         {
             return "(" +
@@ -94,7 +138,7 @@ namespace BenchmarkFull
         }
 
         [Benchmark]
-        public string StringBuilder_With_Math()
+        public string StringBuilder_Math()
         {
             builder.Clear();
             builder.Append("(");
@@ -102,6 +146,47 @@ namespace BenchmarkFull
             builder.Append(") ");
             builder.Append(Day);
             builder.Append("  ");
+            builder.Append((char)((Hour / 10) + 48));
+            builder.Append((char)((Hour % 10) + 48));
+            builder.Append(":");
+            builder.Append((char)((Minute / 10) + 48));
+            builder.Append((char)((Minute % 10) + 48));
+            builder.Append(":");
+            builder.Append((char)((Second / 10) + 48));
+            builder.Append((char)((Second % 10) + 48));
+
+            return builder.ToString();
+        }
+
+        [Benchmark]
+        public string Math_And_Prebuilt_Days()
+        {
+            var dayNumber = (int)Day;
+
+            return "(" +
+                (dayNumber + (Week * 7)) +
+                ") " +
+                PrebuiltDaysString[dayNumber] +
+                "  " +
+                (char)((Hour / 10) + 48) +
+                (char)((Hour % 10) + 48) +
+                ":" +
+                (char)((Minute / 10) + 48) +
+                (char)((Minute % 10) + 48) +
+                ":" +
+                (char)((Second / 10) + 48) +
+                (char)((Second % 10) + 48);
+        }
+
+        [Benchmark]
+        public string StringBuilder_Math_And_Prebuilt_Days()
+        {
+            var dayNumber = (int)Day;
+
+            builder.Clear();
+            builder.Append("(");
+            builder.Append(dayNumber + (Week * 7));
+            builder.Append(PrebuiltDaysString[dayNumber]);
             builder.Append((char)((Hour / 10) + 48));
             builder.Append((char)((Hour % 10) + 48));
             builder.Append(":");
